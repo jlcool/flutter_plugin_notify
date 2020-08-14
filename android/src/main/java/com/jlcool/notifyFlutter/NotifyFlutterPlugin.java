@@ -1,7 +1,5 @@
 package com.jlcool.notifyFlutter;
 
-import androidx.annotation.NonNull;
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
@@ -18,7 +16,7 @@ public class NotifyFlutterPlugin implements FlutterPlugin, MethodCallHandler {
   private MethodChannel channel;
 
   @Override
-  public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+  public void onAttachedToEngine(FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "notifyFlutter");
     channel.setMethodCallHandler(this);
   }
@@ -38,7 +36,7 @@ public class NotifyFlutterPlugin implements FlutterPlugin, MethodCallHandler {
   }
 
   @Override
-  public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+  public void onMethodCall( MethodCall call, Result result) {
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else {
@@ -47,7 +45,7 @@ public class NotifyFlutterPlugin implements FlutterPlugin, MethodCallHandler {
   }
 
   @Override
-  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+  public void onDetachedFromEngine( FlutterPluginBinding binding) {
     channel.setMethodCallHandler(null);
   }
 }
